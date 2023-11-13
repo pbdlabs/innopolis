@@ -1,37 +1,24 @@
 import {createBrowserRouter,createRoutesFromElements,Route,Link,Outlet, RouterProvider} from 'react-router-dom'
-import LoginPage from './components/loginPage/LoginPage'
+import LoginPage from './components/pages/loginPage/LoginPage'
+import HomePage from './components/pages/homePage/HomePage';
 import './App.css';
+// import Navbar from './components/molecules/navbar/Navbar';
+import PrivateRoutes from './protectRoute/ProtectRoute';
 
-const Root = () =>{
-  return(
-    <>
-    <div>
-      <Link to='/' >Home</Link>
-      <Link to='/login'>Login</Link>
-    </div>
 
-  <div>
-    <Outlet/>
-  </div>
-    </>
-  )
-}
-
-const Home = () =>{
-  return(
-    <h1>Home page</h1>
-  )
-}
 
 function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<Root/>}>
-        <Route index element={<Home/>}/>
+      <>
+      <Route element={<PrivateRoutes/>}>
+        <Route path='/' element={<HomePage/>}  />
+      </Route>
+      
         <Route path='/login' element={<LoginPage/>}/>
 
-      </Route>
+      </>
     )
   )
 
