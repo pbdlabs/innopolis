@@ -11,10 +11,8 @@ const outLetComponent = () => {
     )
 } 
 
-
-
 const PrivateRoutes =() =>{
-    let auth = true
+    let auth = true 
 
     return(
         auth ? outLetComponent() : <Navigate to='/login' /> 

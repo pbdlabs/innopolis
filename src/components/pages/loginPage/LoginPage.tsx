@@ -2,17 +2,39 @@ import { useNavigate } from "react-router-dom";
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal, Typography } from 'antd';
 import './index.css'
+import { LoginApiResponse, getLogin } from "../../../services/Services";
+
 
 
 const LoginPage = () =>{
 
     const { Title } = Typography;
     const navigate = useNavigate();
-    
-    const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
-        navigate('/',{replace:true})
 
+
+    const handleLogin = async (username: string,password : string) => {
+        console.log('username',username,password)
+        try {
+          const response: LoginApiResponse = await getLogin(username, password);
+            console.log('response', response)
+          if (response.success) {
+    
+            console.log('Login successful');
+    
+          } else {
+            
+            console.log('Login fails ');
+            
+          }
+        } catch (error) {
+    
+          console.error('Login',error);
+        }
+      };
+    
+    const onFinish = async(values: any) => {
+
+        handleLogin(values.username, values.password)
       };
       
       
