@@ -1,23 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"; 
 
-type InitialStateProp= {
-    value : AuthState;
+interface InitialStateProp{
+value : AuthState;
 }
 
-type AuthState = {
-    isAuth: boolean;
-    username: string;
-    uid: string;
-    isModerator: boolean;
-}
+
+export interface AuthState {
+    message: string,
+    employee_id: number,
+    name: string,
+    email: string,
+    role: string,
+    department: string,
+    isLoggedIn?: boolean,
+} 
 
  
 const initialState = {
     value: {
-        isAuth : false,
-        username: '',
-        uid:'asddadasdadtr',
-        isModerator: false,
+        message: '',
+        employee_id: 0,
+        name: '',
+        email: '',
+        role: '',
+        department: '',
+        isLoggedIn: false,
     } as AuthState,
 } as InitialStateProp;
  
@@ -28,13 +35,16 @@ export const auth = createSlice({
         logOut: ()=>{
             return initialState;
         },
-        logIn: (_, action: PayloadAction<string>) =>{
+        logIn: (_, action: PayloadAction<AuthState>) =>{
             return {
                 value: {
-                    isAuth:true,
-                    username: action.payload,
-                    uid: "asddadasdadtr",
-                    isModerator: false,
+                    message: action.payload.message,
+                    employee_id: action.payload.employee_id,
+                    name: action.payload.name,
+                    email: action.payload.email,
+                    role: action.payload.role,
+                    department: action.payload.department,
+                    isLoggedIn: true,
                 }
             }
         }

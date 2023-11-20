@@ -1,26 +1,33 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Modal, Typography } from 'antd';
 import './index.css'
 import { LoginApiResponse, getLogin } from "../../../services/Services";
-
-
+import { AppDispatch } from "../../../redux/Store";
+import { useDispatch } from 'react-redux';
+import { AuthState, logIn } from "../../../redux/features/AuthSlice";
+import { SetUserDetailCookies } from "../../../cookies/HandleCookies";
 
 const LoginPage = () =>{
 
     const { Title } = Typography;
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
+
 
 
     const handleLogin = async (username: string,password : string) => {
         console.log('username',username,password)
         try {
           const response: LoginApiResponse = await getLogin(username, password);
-            console.log('response', response)
-          if (response.success) {
-    
-            console.log('Login successful');
-    
+          
+          console.log('userssss',response.success , response.data)
+          if (response.success && response.data) {
+            SetUserDetailCookies(response.data)
+
+            dispatch(logIn(response.data))
+            navigate('/')
+            
           } else {
             
             console.log('Login fails ');
@@ -36,9 +43,9 @@ const LoginPage = () =>{
 
         handleLogin(values.username, values.password)
       };
+
       
-      
-      const info = () => {
+    const info = () => {
         Modal.info({
           title: 'This is a notification message',
           content: (
@@ -50,6 +57,7 @@ const LoginPage = () =>{
           onOk() {},
         });
       };  
+
   
        
     return(
@@ -87,9 +95,9 @@ const LoginPage = () =>{
 
             <Form.Item>
 
-                <a className="login-form-forgot" onClick={info} >
+                <Link to='' className="login-form-forgot" onClick={info} >
                     Forgot password
-                </a>
+                </Link>
             </Form.Item>
 
             </Form>

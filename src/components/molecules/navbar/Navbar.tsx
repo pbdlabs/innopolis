@@ -1,11 +1,12 @@
-import { Avatar, Button, Layout, Menu, MenuProps, Modal, Popconfirm, Popover, theme } from "antd"
+import {  Button, Layout, Menu, MenuProps, Popover, theme } from "antd"
 import Sider from "antd/es/layout/Sider";
 import { Content, Header } from "antd/es/layout/layout"
 import React, { useState } from "react";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { LaptopOutlined, NotificationOutlined, UserOutlined, UserAddOutlined, CustomerServiceOutlined } from '@ant-design/icons';
 import NavProfilePopUp from "../../atoms/navProfilePopUp/NavProfilePopUp";
 import AddNewEmployeeCard from "../../atoms/addNewEmployeeCard/AddNewEmployeeCard";
+import { getEmployeesDetails } from "../../../services/Services";
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -75,6 +76,29 @@ const Navbar = () =>{
       const handleCancel = () => {
         setIsModalOpen(false);
       };
+
+      const getEmployeeDetails = async() =>{
+        try {
+          const response = await getEmployeesDetails();
+          
+          console.log('userssss',response)
+
+          // if (response.success && response.data) {
+          //   SetUserDetailCookies(response.data)
+
+          //   dispatch(logIn(response.data))
+          //   navigate('/')
+            
+          // } else {
+            
+          //   console.log('Login fails ');
+            
+          // }
+        } catch (error) {
+    
+          console.error('Login',error);
+        }
+      }
     
 
 
@@ -102,6 +126,11 @@ const Navbar = () =>{
             key: 'Design team4',
             icon: <CustomerServiceOutlined/>,
             label: <Button type="text" style={{backgroundColor:'transparent', paddingLeft:'0px'}} onClick={showModal }>Change password </Button>,
+          },
+          {
+            key: 'Design team5',
+            icon: <CustomerServiceOutlined/>,
+            label: <Link to='/currentEmployee' type="text" style={{backgroundColor:'transparent', paddingLeft:'0px'}} onClick={getEmployeeDetails}>Change password </Link>,
           }
         ]
     
@@ -128,13 +157,13 @@ const Navbar = () =>{
 
 
     return(
-        <Layout style={{height:'100vh'}}>
+        <Layout >
         <Header style={{ display: 'flex', alignItems: 'center' }}>
         <div className="demo-logo" />
         <Menu theme="dark" mode="horizontal" />
         
         
-         <Popover content={<NavProfilePopUp/>} >
+        <Popover content={<NavProfilePopUp/>} >
          {!isPathLogin &&<Button type="primary" style={{marginLeft:'auto', float: "right", marginTop: "5px" }}>Profile</Button>}
         </Popover>
               
@@ -143,7 +172,7 @@ const Navbar = () =>{
 
       <Layout>
 
-      {!isPathLogin && <Sider width={250} style={{ background: colorBgContainer }}>
+      {!isPathLogin && <Sider width={250}  style={{overflow: 'auto',height: '100vh', background: colorBgContainer }}>
 
           <Menu
             mode="inline"
@@ -160,6 +189,7 @@ const Navbar = () =>{
               margin: 0,
               minHeight: 280,
               background: colorBgContainer,
+              overflow: 'initial'
             }}
           >
             <Outlet/>
