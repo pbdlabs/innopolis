@@ -6,6 +6,57 @@ export interface LoginApiResponse {
     message?: string;
 };
 
+interface getPlantSelectProps{
+    Id: number;
+    PlantName: string;
+}
+ 
+interface getProjectLeadsSelectProps{
+    Id: number;
+    EmployeeName: string;
+}
+interface getClientsSelectProps{
+  Id : number
+  ClientName : string
+  ClientAddress : string
+  ContactPerson : string
+  ContactEmail : string
+}
+export interface GetPlantSelectApiResponse {
+    success: boolean;
+    data :getPlantSelectProps[] | null;
+    message?: string;
+};
+export interface GetProjectLeadsSelectApiResponse {
+    success: boolean;
+    data :getProjectLeadsSelectProps[] | null;
+    message?: string;
+};
+export interface GetClientsSelectApiResponse {
+    success: boolean;
+    data :getClientsSelectProps[] | null;
+    message?: string;
+};
+
+export interface GetMaterialReqProps{
+    req_id: number
+    ComponentName: string
+    ComponentType: string
+    Specs: string
+    ItemType:string
+    ProjectNumber: number,
+    PlantName: string
+    ProjectName: string,
+    EmployeeName: string,
+    RequestedDate: Date,
+    Status: string
+}
+
+export interface GetMaterialReqDesignHODProps{
+  success: boolean;
+  data :GetMaterialReqProps[] | null;
+  message?: string;
+}
 
 const baseUrl = 'http://localhost:5001/';
 
@@ -152,5 +203,90 @@ export const patchEmployeeDetails  = async(employeeInfo:PassNewEmployeeProps) =>
 
     return { success: false, message: `Error to  edit details: ${error instanceof Error ? error.message : 'Unknown error'}` };
 
+  }
+}
+
+
+export const getPlantSelect = async()=>{
+  const apiUrl = `${baseUrl}api/designhd/plants`;
+    
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return { success: true, data: data} as GetPlantSelectApiResponse;
+    } else {
+      return { success: false, data: null, message: 'Fail to fetch Plant List' } as GetPlantSelectApiResponse;
+    }
+  } catch (error) {
+    return { success: false, data: null, message: `Fail to fetch Plant List: ${error instanceof Error ? error.message : 'Unknown error'}` } as GetPlantSelectApiResponse;
+  }
+}
+
+export const getProjectLeadsSelect = async()=>{
+  const apiUrl = `${baseUrl}api/designhd/designemployees`;
+    
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return { success: true, data: data} as GetProjectLeadsSelectApiResponse;
+    } else {
+      return { success: false, data: null, message: 'Fail to fetch Project leads' } as GetProjectLeadsSelectApiResponse;
+    }
+  } catch (error) {
+    return { success: false, data: null, message: `Fail to fetch Project leads: ${error instanceof Error ? error.message : 'Unknown error'}` } as GetProjectLeadsSelectApiResponse;
+  }
+}
+
+export const getClientsSelect = async()=>{
+  const apiUrl = `${baseUrl}api/designhd/clients`;
+    
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return { success: true, data: data} as GetClientsSelectApiResponse;
+    } else {
+      return { success: false, data: null, message: 'Fail to fetch Clients' } as GetClientsSelectApiResponse;
+    }
+  } catch (error) {
+    return { success: false, data: null, message: `Fail to fetch Clients: ${error instanceof Error ? error.message : 'Unknown error'}` } as GetClientsSelectApiResponse;
+  }
+}
+
+export const getMaterialReqDesignHOD = async()=>{
+  const apiUrl = `${baseUrl}api/designhd/materialreq`;
+    
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return { success: true, data: data} as GetMaterialReqDesignHODProps;
+    } else {
+      return { success: false, data: null, message: 'Fail to fetch Material Request' } as GetMaterialReqDesignHODProps;
+    }
+  } catch (error) {
+    return { success: false, data: null, message: `Fail to fetch Material request: ${error instanceof Error ? error.message : 'Unknown error'}` } as GetMaterialReqDesignHODProps;
   }
 }

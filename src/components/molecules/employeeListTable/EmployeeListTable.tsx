@@ -2,10 +2,10 @@ import { Button, Popconfirm, Row, Space, Table } from "antd";
 import Column from "antd/es/table/Column";
 // import { EmployeeDetailProps } from "../../services/CommonType";
 import { useState } from "react";
-import AddNewEmployeeCard from "../atoms/addNewEmployeeCard/AddNewEmployeeCard";
-import { EmployeeDetailProps } from "../../services/CommonType";
+import AddNewEmployeeCard from "../addNewEmployeeCard/AddNewEmployeeCard";
+import { EmployeeDetailProps } from "../../../services/CommonType";
 import { PlusOutlined } from "@ant-design/icons";
-import { deleteEmployeeDetails } from "../../services/Services";
+import { deleteEmployeeDetails } from "../../../services/Services";
 
 interface EmployeeListProps {
     listOfEmployee: EmployeeDetailProps[];

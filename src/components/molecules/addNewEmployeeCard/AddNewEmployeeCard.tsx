@@ -25,14 +25,44 @@ const AddNewEmployeeCard = ({isAddEmployee,employeeDetails,isModalOpen,handleOk,
   const onFinish =async (values: any) => {
     console.log(values);
     const getValues  =await form.getFieldsValue()
+
+
+    const getDepartmentValue = () =>{
+      switch(getValues.DepartmentName) {
+        case 'Design':
+          return 1;
+        case 'Purchase':
+          return 2;
+        case 'Finance':
+          return 3;
+        case 'HOD':
+          return 2;
+        case 'Employee':
+          return 3;
+        case '1':
+          return 1;
+        case '2':
+          return 2;
+        case '3':
+          return 3;
+        default:
+          return 0;
+      }
+    }
+
+    const departmentValue = isAddEmployee ? Number(getValues.DepartmentName)  : getDepartmentValue()
+    const roleValue = isAddEmployee ? Number(getValues.RoleName)  : getDepartmentValue()
+
     const employeeInfo : PassNewEmployeeProps = {
       employee_name: getValues.EmployeeName ,
       employee_id: getValues.EmployeeId,
       email_id: getValues.EmailId,
-      department: Number(getValues.DepartmentName),
-      role: Number(getValues.RoleName),
+      department: departmentValue,
+      role: roleValue,
       password: getValues.password || null, 
-    } 
+    }
+
+
 
     const editEmployeeInfo = {...employeeInfo,admin_pass:getValues.adminPassword || null , id :Number(employeeDetails?.Id)}
     console.log("onfinish", editEmployeeInfo)

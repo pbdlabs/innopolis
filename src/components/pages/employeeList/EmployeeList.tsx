@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { getEmployeesDetails } from "../../../services/Services"
 import { Empty } from "antd"
-import EmployeeListTable from "../../employeeListTable/EmployeeListTable"
+import EmployeeListTable from "../../molecules/employeeListTable/EmployeeListTable"
 import { EmployeeDetailProps } from "../../../services/CommonType"
 
 

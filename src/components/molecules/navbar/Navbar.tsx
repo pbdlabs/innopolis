@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { LaptopOutlined, NotificationOutlined, UserOutlined, UserAddOutlined, CustomerServiceOutlined } from '@ant-design/icons';
 import NavProfilePopUp from "../../atoms/navProfilePopUp/NavProfilePopUp";
-import AddNewEmployeeCard from "../../atoms/addNewEmployeeCard/AddNewEmployeeCard";
+import AddNewEmployeeCard from "../addNewEmployeeCard/AddNewEmployeeCard";
 import { getEmployeesDetails } from "../../../services/Services";
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -106,34 +106,67 @@ const Navbar = () =>{
             key: 'Design team',
             icon: <UserOutlined/>,
             label: `Design team`,
+            subMenu:[
+              {
+              key: 'projects',
+              label: <Link to='/designDepartment/projects'>Projects</Link>
+            },
+              {
+              key: 'materialRequest',
+              label:<Link to='/designDepartment/materialRequest'>Material Request</Link>,
+            },
+              {
+              key: 'clients',
+              label:<Link to='/designDepartment/Clients'>Clients</Link>,
+            },
+          ]
           },
           {
-            key: 'Design team1',
+            key: 'Design department',
             icon: <LaptopOutlined/>,
             label: `Design team1`,
+            subMenu:[
+              {
+                key: 'projects',
+                label: <Link to='/designDepartment/employee/projects'>Projects</Link>
+              },
+                {
+                key: 'materialRequestStatus ',
+                label:<Link to='/designDepartment/employee/materialRequestStatus'>Material Request Status</Link>,
+              },
+                {
+                key: 'materialDashboard',
+                label:<Link to='/designDepartment/employee/materialDashboard'>Material Dashboard</Link>,
+              },
+            ]
           },
           {
             key: 'Design team2',
             icon: <NotificationOutlined/>,
             label: `Design team2`,
+            subMenu:[]
           },
           {
             key: 'Design team3',
             icon: <UserAddOutlined />,
             label: <Button type="text" style={{backgroundColor:'transparent', paddingLeft:'0px'}} onClick={showModal}>Onboard new employee</Button>,
+            subMenu:[]
           },
           {
             key: 'Design team4',
             icon: <CustomerServiceOutlined/>,
             label: <Button type="text" style={{backgroundColor:'transparent', paddingLeft:'0px'}} onClick={showModal }>Change password </Button>,
+            subMenu:[]
           },
           {
             key: 'Design team5',
             icon: <CustomerServiceOutlined/>,
             label: <Link to='/currentEmployee' type="text" style={{backgroundColor:'transparent', paddingLeft:'0px'}} onClick={getEmployeeDetails}>Change password </Link>,
+            subMenu:[]
           }
         ]
     
+
     
 
       const items3: MenuProps['items'] = item4.map(
@@ -143,14 +176,12 @@ const Navbar = () =>{
             key: eachMenu.key,
             icon: eachMenu.icon,
             label: eachMenu.label,
-      
-            children: new Array(4).fill(null).map((_, j) => {
-              const subKey = index * 4 + j + 1;
+            children: eachMenu.subMenu.map(eachSubMenu=>{
               return {
-                key: subKey,
-                label: `option${subKey}`,
-              };
-            }),
+                key:eachSubMenu.key,
+                label:eachSubMenu.label,
+              }
+            })
           };
         },
       );

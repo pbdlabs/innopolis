@@ -7,18 +7,22 @@ import { AppDispatch } from "../../../redux/Store";
 import { useDispatch } from 'react-redux';
 import { AuthState, logIn } from "../../../redux/features/AuthSlice";
 import { SetUserDetailCookies } from "../../../cookies/HandleCookies";
+import { useState } from "react";
 
 const LoginPage = () =>{
+  
+  const [loginButton, setLoginButton] = useState<boolean>(false);
+  const { Title } = Typography;
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
-    const { Title } = Typography;
-    const navigate = useNavigate();
-    const dispatch = useDispatch<AppDispatch>();
 
 
 
     const handleLogin = async (username: string,password : string) => {
         console.log('username',username,password)
         try {
+          setLoginButton(true)
           const response: LoginApiResponse = await getLogin(username, password);
           
           console.log('userssss',response.success , response.data)
@@ -26,15 +30,17 @@ const LoginPage = () =>{
             SetUserDetailCookies(response.data)
 
             dispatch(logIn(response.data))
+            setLoginButton(false)
             navigate('/')
             
           } else {
             
             console.log('Login fails ');
+            setLoginButton(false)
             
           }
         } catch (error) {
-    
+          setLoginButton(false)
           console.error('Login',error);
         }
       };
@@ -88,7 +94,7 @@ const LoginPage = () =>{
             </Form.Item>
 
             <Form.Item>
-                <Button type="primary" htmlType="submit" className="login-form-button">
+                <Button disabled={loginButton} type="primary" htmlType="submit" className="login-form-button">
                 Log in
                 </Button>
             </Form.Item>
