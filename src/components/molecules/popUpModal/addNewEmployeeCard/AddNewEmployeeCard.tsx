@@ -108,6 +108,7 @@ const AddNewEmployeeCard = ({
       open={isModalOpen}
       onOk={handleOk}
       onCancel={handleCancel}
+      footer={null}
     >
       <Form
         {...layout}

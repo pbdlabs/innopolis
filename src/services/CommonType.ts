@@ -70,9 +70,20 @@ export interface EditProjectDesignHODProps {
   status: string;
 }
 
+export interface   GetMaterialRequestDataDesignEmpProps{
+  project_code: number;
+  project_name: string;
+  component_type: string;
+  component_name: string;
+  specs: string;
+  item: string;
+  lead_time: string;
+  status: string;
+}
+
 export interface GetMaterialRequestDesignEmpProps {
   success: boolean;
-  data: any[] | null;
+  data: GetMaterialRequestDataDesignEmpProps[] | null;
   message?: string;
 }
 

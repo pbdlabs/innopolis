@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { GetMaterialRequestDesignEmpProps } from "../../../../../../services/CommonType";
 import { getMaterialRequestEmpDesign } from "../../../../../../services/design/DesignServices";
 
-
 const columns: ColumnsType<any> = [
     {
       title: "Component name",
@@ -19,13 +18,13 @@ const columns: ColumnsType<any> = [
     },
     {
       title: "Item/Type",
-      dataIndex: "Item",
-      key: "Item",
+      dataIndex: "item",
+      key: "item",
     },
     {
       title: "Spec list",
-      key: "Spec_list",
-      dataIndex: "Spec_list",
+      key: "specs",
+      dataIndex: "specs",
     },
     {
       title: "Project code",
@@ -33,29 +32,19 @@ const columns: ColumnsType<any> = [
       dataIndex: "project_code",
     },
     {
-        title: "Plant",
-        key: "plant",
-        dataIndex: "plant",
+        title: "Project Name",
+        key: "project_name",
+        dataIndex: "project_name",
     },
     {
-        title: "Sub system",
-        key: "sub_system",
-        dataIndex: "sub_system",
+        title: "Lead Time",
+        key: "lead_time",
+        dataIndex: "lead_time",
     },
     {
         title: "Status",
         key: "status",
         dataIndex: "status",
-    },
-    {
-        title: "Lead time",
-        key: "Lead_time",
-        dataIndex: "Lead_time",
-    },
-    {
-      title: "Requested Date",
-      key: "requested_date",
-      dataIndex: "requested_date",
     },
   ];
 
@@ -66,8 +55,12 @@ const MaterialRequestStatusEmpDesign = () =>{
         data: null
     })
 
+    const callMaterialRequest=async()=>[
+      setMaterialRequest(await getMaterialRequestEmpDesign())
+    ]
+
     useEffect(()=>{
-        getMaterialRequestEmpDesign()
+      callMaterialRequest()
     })
 
     return(

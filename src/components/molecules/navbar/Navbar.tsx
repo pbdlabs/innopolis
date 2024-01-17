@@ -105,22 +105,22 @@ const Navbar = () => {
 
   const item4 = [
     {
-      key: "Design team",
-      icon: <UserOutlined />,
-      label: `Design team`,
+      key: "DesignTeam",
+      icon: <LaptopOutlined />,
+      label: `Design Department HOD`,
       subMenu: [
         {
-          key: "projects",
+          key: "projectsHOD",
           label: <Link to="/designDepartment/projects">Projects</Link>,
         },
         {
-          key: "materialRequest",
+          key: "materialRequestHOD",
           label: (
             <Link to="/designDepartment/materialRequest">Material Request</Link>
           ),
         },
         {
-          key: "clients",
+          key: "clientsHOD",
           label: <Link to="/designDepartment/Clients">Clients</Link>,
         },
       ],
@@ -128,7 +128,7 @@ const Navbar = () => {
     {
       key: "Design department",
       icon: <LaptopOutlined />,
-      label: `Design team1`,
+      label: `Design Department Employee`,
       subMenu: [
         {
           key: "projects",
@@ -152,55 +152,84 @@ const Navbar = () => {
         },
       ],
     },
+    // {
+    //   key: "addNewEmployee",
+    //   icon: <NotificationOutlined />,
+    //   label: `Add New Employee`,
+    //   subMenu: [],
+    // },
+    // {
+    //   key: "Design team3",
+    //   icon: <UserAddOutlined />,
+    //   label: (
+    //     <Button
+    //       type="text"
+    //       style={{ backgroundColor: "transparent", paddingLeft: "0px" }}
+    //       onClick={showModal}
+    //     >
+    //       Onboard new employee
+    //     </Button>
+    //   ),
+    //   subMenu: [],
+    // },
+    // {
+    //   key: "Design team4",
+    //   icon: <CustomerServiceOutlined />,
+    //   label: (
+    //     <Button
+    //       type="text"
+    //       style={{ backgroundColor: "transparent", paddingLeft: "0px" }}
+    //       onClick={showModal}
+    //     >
+    //       Change password{" "}
+    //     </Button>
+    //   ),
+    //   subMenu: [],
+    // },
     {
-      key: "Design team2",
-      icon: <NotificationOutlined />,
-      label: `Design team2`,
-      subMenu: [],
-    },
-    {
-      key: "Design team3",
-      icon: <UserAddOutlined />,
-      label: (
-        <Button
-          type="text"
-          style={{ backgroundColor: "transparent", paddingLeft: "0px" }}
-          onClick={showModal}
-        >
-          Onboard new employee
-        </Button>
-      ),
-      subMenu: [],
-    },
-    {
-      key: "Design team4",
-      icon: <CustomerServiceOutlined />,
-      label: (
-        <Button
+      key: "addNewEmployee",
+      icon:  <UserAddOutlined />,
+      label: `Add New Employee`,
+      subMenu: [
+        {
+          key: "changePassword",
+          label: <Button
           type="text"
           style={{ backgroundColor: "transparent", paddingLeft: "0px" }}
           onClick={showModal}
         >
           Change password{" "}
-        </Button>
-      ),
-      subMenu: [],
-    },
-    {
-      key: "Design team5",
-      icon: <CustomerServiceOutlined />,
-      label: (
-        <Link
-          to="/currentEmployee"
-          type="text"
-          style={{ backgroundColor: "transparent", paddingLeft: "0px" }}
-          onClick={getEmployeeDetails}
-        >
-          Change password{" "}
-        </Link>
-      ),
-      subMenu: [],
-    },
+        </Button>,
+        },
+        {
+          key: "getEmployeeDetails",
+          label: (
+            <Link
+            to="/currentEmployee"
+            type="text"
+            style={{ backgroundColor: "transparent", paddingLeft: "0px" }}
+            onClick={getEmployeeDetails}
+          >
+            Employee details
+          </Link>
+          ),
+        },]
+      },
+    // {
+    //   key: "Design team5",
+    //   icon: <CustomerServiceOutlined />,
+    //   label: (
+    //     <Link
+    //       to="/currentEmployee"
+    //       type="text"
+    //       style={{ backgroundColor: "transparent", paddingLeft: "0px" }}
+    //       onClick={getEmployeeDetails}
+    //     >
+    //       Change password{" "}
+    //     </Link>
+    //   ),
+    //   subMenu: [],
+    // },
   ];
 
   const items3: MenuProps["items"] = item4.map((eachMenu, index) => {

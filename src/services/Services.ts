@@ -114,7 +114,7 @@ export const getLogin = async (
 };
 
 export const getEmployeesDetails = async () => {
-  const apiUrl = `${baseUrl}api/user/get`;
+  const apiUrl = `${baseUrl}user/get`;
 
   try {
     const response = await fetch(apiUrl, {

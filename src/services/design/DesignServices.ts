@@ -75,8 +75,7 @@ export const getProjectsDesignEmp =
 
   export const getMaterialRequestEmpDesign =
   async (): Promise<GetMaterialRequestDesignEmpProps> => {
-    const apiUrl = `${baseUrl}designem/projects`;
-
+    const apiUrl = `${baseUrl}designem/materialReqStatus`;
     try {
       const response = await fetch(apiUrl, {
         method: "GET",
