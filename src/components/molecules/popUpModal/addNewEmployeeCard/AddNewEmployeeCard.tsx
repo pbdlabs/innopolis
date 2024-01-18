@@ -93,7 +93,6 @@ const AddNewEmployeeCard = ({
   };
 
   useEffect(() => {
-    console.log("asdsda", employeeDetails);
     employeeDetails && form.setFieldsValue(employeeDetails);
   }, [employeeDetails]);
 

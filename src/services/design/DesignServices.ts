@@ -1,6 +1,4 @@
 import { AddMaterialConvertProjectEmpDesignProps, EditProjectDesignHODProps, GetComponentProDesignEmpProps, GetComponentTypeProDesignEmpProps, GetItemProDesignEmpProps, GetMaterialDesignEmpProps, GetMaterialRequestDesignEmpProps, GetProjectsDesignEmpProps, GetSpecProDesignEmpProps } from "../CommonType";
-import { AddNewProjectDesignHODProps } from "../Services";
-
 const baseUrl = "http://localhost:5001/";
 
 export const EditProjectDesignHOD = async (
@@ -28,9 +26,11 @@ export const EditProjectDesignHOD = async (
     if (response.ok) {
       return { success: true, message: "edit successfully " };
     } else {
+      alert("Fail to edit")
       return { success: false, message: "Fail to edit" };
     }
   } catch (error) {
+    alert("Fail to edit")
     return {
       success: false,
       message: `Error duringEditing new project: ${
@@ -53,9 +53,9 @@ export const getProjectsDesignEmp =
       });
       if (response.ok) {
         const data = await response.json();
-        console.log("data", data);
         return { success: true, data: data };
       } else {
+        alert("Fail to fetch Projects Request")
         return {
           success: false,
           data: null,
@@ -87,6 +87,7 @@ export const getProjectsDesignEmp =
         const data = await response.json();
         return { success: true, data: data };
       } else {
+        alert("Fail to fetch material request")
         return {
           success: false,
           data: null,
@@ -120,6 +121,7 @@ export const getProjectsDesignEmp =
         const data = await response.json();
         return { success: true, data: data };
       } else {
+        alert("Fail to fetch material")
         return {
           success: false,
           data: null,
@@ -153,6 +155,8 @@ export const getProjectsDesignEmp =
         const data = await response.json();
         return { success: true, data: data };
       } else {
+        alert("Fail to fetch component type")
+
         return {
           success: false,
           data: null,
@@ -185,6 +189,7 @@ export const getProjectsDesignEmp =
         const data = await response.json();
         return { success: true, data: data };
       } else {
+        alert("Fail to fetch Item")
         return {
           success: false,
           data: null,
@@ -217,6 +222,7 @@ export const getProjectsDesignEmp =
         const data = await response.json();
         return { success: true, data: data };
       } else {
+        alert("Fail to fetch component")
         return {
           success: false,
           data: null,
@@ -248,6 +254,7 @@ export const getProjectsDesignEmp =
         const data = await response.json();
         return { success: true, data: data };
       } else {
+        alert("Fail to fetch spec")
         return {
           success: false,
           data: null,
@@ -283,6 +290,7 @@ export const getProjectsDesignEmp =
       if (response.ok) {
         return { success: true, message: "New project added successfully " };
       } else {
+        alert("Fail to add new project")
         return { success: false, message: "Fail to add new project" };
       }
     } catch (error) {

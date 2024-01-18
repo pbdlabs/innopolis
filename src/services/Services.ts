@@ -1,3 +1,4 @@
+import { Alert } from "antd";
 import { AuthState } from "../redux/features/AuthSlice";
 import {
   ClientsDesignHODDataProps,
@@ -101,6 +102,7 @@ export const getLogin = async (
       const data = await response.json();
       return { success: true, data: data };
     } else {
+      alert("Login failed")
       return { success: false, message: "Login failed" };
     }
   } catch (error) {
@@ -128,6 +130,7 @@ export const getEmployeesDetails = async () => {
       const data = await response.json();
       return { success: true, data: data };
     } else {
+      alert("Fail to get employee list")
       return { success: false, message: "Fail to get employee list" };
     }
   } catch (error) {
@@ -160,9 +163,9 @@ export const passNewEmployee = async (employeeInfo: PassNewEmployeeProps) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log("passNewEmployee", data);
       return { success: true, data: data };
     } else {
+      alert("Fail to onboard")
       return { success: false, message: "Failed to onboard" };
     }
   } catch (error) {
@@ -190,6 +193,7 @@ export const deleteEmployeeDetails = async (employeeId: number) => {
       const data = await response.json();
       return { success: true, data: data };
     } else {
+      alert("Fail to delete employee")
       return { success: false, message: "Fail to delete employee" };
     }
   } catch (error) {
@@ -228,6 +232,7 @@ export const patchEmployeeDetails = async (
       const data = await response.json();
       return { success: true, data: data };
     } else {
+      alert("Fail to edit details")
       return { success: false, message: "Fail to edit details" };
     }
   } catch (error) {
@@ -254,6 +259,7 @@ export const getPlantSelect = async () => {
       const data = await response.json();
       return { success: true, data: data } as GetPlantSelectApiResponse;
     } else {
+      alert("Fail to fetch Plant List")
       return {
         success: false,
         data: null,
@@ -286,6 +292,7 @@ export const getProjectLeadsSelect = async () => {
       const data = await response.json();
       return { success: true, data: data } as GetProjectLeadsSelectApiResponse;
     } else {
+      alert("Fail to fetch project leads")
       return {
         success: false,
         data: null,
@@ -317,6 +324,7 @@ export const getClientsSelect = async () => {
       const data = await response.json();
       return { success: true, data: data } as GetClientsSelectApiResponse;
     } else {
+      alert("Fail to fetch clients")
       return {
         success: false,
         data: null,
@@ -348,6 +356,7 @@ export const getMaterialReqDesignHOD = async () => {
       const data = await response.json();
       return { success: true, data: data } as GetMaterialReqDesignHODProps;
     } else {
+      alert("Fail to fetch material request")
       return {
         success: false,
         data: null,
@@ -380,6 +389,7 @@ export const getProjectsDesignHOD = async () => {
       console.log("data", data);
       return { success: true, data: data } as GetProjectsDesignHODProps;
     } else {
+      alert("Fail to fetch projects request")
       return {
         success: false,
         data: null,
@@ -411,6 +421,7 @@ export const getClientDesignHOD = async () => {
       const data = await response.json();
       return { success: true, data: data } as ClientsDesignHODProps;
     } else {
+      alert("Fail to fetch project request")
       return {
         success: false,
         data: null,
@@ -450,6 +461,7 @@ export const AddNewClientDesignHOD = async (
     if (response.ok) {
       return { success: true, message: "Client added Successfully " };
     } else {
+      alert("Fail to add client")
       return { success: false, message: "Fail to Add Client" };
     }
   } catch (error) {
@@ -485,6 +497,7 @@ export const AddNewProjectDesignHOD = async (
     if (response.ok) {
       return { success: true, message: "New project added successfully " };
     } else {
+      alert("Fail to add new project")
       return { success: false, message: "Fail to add new project" };
     }
   } catch (error) {
@@ -518,6 +531,7 @@ export const callApprovalAndDecline = async (
     if (response.ok) {
       return { success: true } as GetMaterialReqDesignHODProps;
     } else {
+      alert("Fail to process")
       return {
         success: false,
         message: "Fail to process action",

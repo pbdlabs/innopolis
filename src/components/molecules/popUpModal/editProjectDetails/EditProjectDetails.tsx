@@ -89,7 +89,6 @@ const EditProjectDetails = ({
     
     console.log("converted ",values)
     const convertedResponse : EditProjectDesignHODProps = await convertStringValues(values)
-    console.log("converted ",convertedResponse)
     EditProjectDesignHOD(convertedResponse)
     handleOk();
   };
