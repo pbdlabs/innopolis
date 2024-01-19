@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/innopolis/static/css/main.6330949f.css",
+    "main.js": "/innopolis/static/js/main.61e7b931.js",
+    "static/js/787.d628373e.chunk.js": "/innopolis/static/js/787.d628373e.chunk.js",
+    "index.html": "/innopolis/index.html",
+    "main.6330949f.css.map": "/innopolis/static/css/main.6330949f.css.map",
+    "main.61e7b931.js.map": "/innopolis/static/js/main.61e7b931.js.map",
+    "787.d628373e.chunk.js.map": "/innopolis/static/js/787.d628373e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6330949f.css",
+    "static/js/main.61e7b931.js"
+  ]
+}
