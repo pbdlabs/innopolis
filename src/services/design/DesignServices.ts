@@ -1,5 +1,5 @@
 import { AddMaterialConvertProjectEmpDesignProps, EditProjectDesignHODProps, GetComponentProDesignEmpProps, GetComponentTypeProDesignEmpProps, GetItemProDesignEmpProps, GetMaterialDesignEmpProps, GetMaterialRequestDesignEmpProps, GetProjectsDesignEmpProps, GetSpecProDesignEmpProps } from "../CommonType";
-const baseUrl = "http://localhost:5001/";
+const baseUrl = "https://innopolis.onrender.com/";
 
 export const EditProjectDesignHOD = async (
   editData: EditProjectDesignHODProps

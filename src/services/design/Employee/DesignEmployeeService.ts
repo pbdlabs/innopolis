@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:5001/";
+const baseUrl = "https://innopolis.onrender.com/";
 
 export interface GetComponentTypeMaterialDataProps{ 
     type_id: number;
